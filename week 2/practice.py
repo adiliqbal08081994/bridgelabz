@@ -1,3 +1,7 @@
+#data structure practice
+
+
+#Array implimentation
 import ctypes
 class _ArrayIterator():
         def __init__(self,theArray):
@@ -36,7 +40,7 @@ class Array:
     def __iter__(self):
         return _ArrayIterator(self.elements)
 
-
+#2D Array implimentation
 
 class Array2D:
     def __init__(self,numRows,numCols):
@@ -69,7 +73,7 @@ class Array2D:
         the1Darray[col]=Value
 
 
-
+# matrix implimentation
 
 class Matrix:
     def __init__(self,numRows,numCols):
@@ -90,3 +94,42 @@ class Matrix:
 
     def _transpose(self):
         pass
+
+
+
+# set implimentation
+class Set:
+    def __init__(self):
+        self._theElemens=list()
+    def __len__(self):
+        return len(self._theElemens)
+    def __contains__(self,elements):
+        return elements in self._theElemens
+    
+
+    def __add__(self,elements):
+        if elements not in self._theElemens:
+            self._theElemens.append(elements)
+
+    def __remove__(self,element):
+        assert element in self._theElemens
+        self._theElemens.remove(element)
+    
+
+    def __eq__(self,setB):
+        if len(self)!=len(setB):
+            return False
+        else:
+            return self.isSubsetOf(setB)
+    def isSubsetOf(self,setB):
+        for elements in self:
+            if elements not in setB:
+                return False
+            
+            return True
+    
+
+    def union(self,setB):
+        newset=Set()
+        newset._theElemens.extend(self._theElemens)
+        return newset
