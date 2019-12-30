@@ -71,3 +71,22 @@ class Array2D:
 
 
 
+class Matrix:
+    def __init__(self,numRows,numCols):
+        self._theGrid=Array2D(numRows,numCols)
+        self._theGrid.(clear)
+    
+    def numRows(self):
+        return self._theGrid.numRows()
+    def numCols(self):
+        return self._theGrid.numCols
+    
+    def __getitems__(self,ndxTuple):
+        return self._theGrid[ndxTuple[0],ndxTuple[1]]
+    
+    def __setitems__(self,ndxTuple,Value):
+        self._theGrid[ndxTuple[0],ndxTuple[1]]=Value
+    
+
+    def _transpose(self):
+        pass
