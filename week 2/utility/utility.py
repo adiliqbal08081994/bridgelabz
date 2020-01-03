@@ -97,3 +97,49 @@ class Bag:
         return _BagIterator(self._head)
 
 
+# ordered linked list
+class Newnode:
+    def __init__(self,item):
+        self.item=item
+        self.next=None
+class sortedlist():
+    def __init__(self):
+        self.head=None
+        self._size=0
+    def __len__(self):
+        return self._size
+    def __add__(self,element):
+        newobject=Newnode(element)
+        newobject.next=self.head
+        self.head=newobject
+        self._size+=1
+    
+    def __ins__(self,item,position):
+        n=position
+        newobject=Newnode(item)
+        currnode=self.head
+        while currnode is not None and n!=0:
+            pred=currnode
+            currnode=currnode.next
+            n-=1
+        pred.next=newobject
+        newobject.next=currnode
+        self._size+=1
+    def __display__(self):
+        curnode=self.head
+        while curnode is not None:
+            print(curnode.item)
+            curnode=curnode.next
+    def comparing(self,item):
+        currnode=self.head
+        n=0
+        while currnode is not None and currnode.item>item:
+            currnode=currnode.next
+            n=n+1
+        return n
+    def __sortlinkedlist__(self,item):
+        t=self.comparing(item)
+        if t==0:
+            self.__add__(item)
+        else:
+            self.__ins__(item,t)         
