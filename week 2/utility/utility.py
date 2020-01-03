@@ -146,6 +146,22 @@ class sortedlist():
 
 
 
+#que
+class Que:
+    def __init__(self):
+        self.qlist=[]
+    def isEmpty(self):
+        return len(self)==0
+    def __len__(self):
+        return len(self.qlist)
+    def enque(self,item):
+        self.qlist.append(item)
+            
+            
+    def deque(self):
+        assert not self.isEmpty()
+        return self.qlist.pop(0)
+
 
 #stacks data structure
 class _StackNode:
