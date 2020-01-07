@@ -146,6 +146,154 @@ class sortedlist():
 
 
 
+'''this is the program to build a doubly linked list'''
+# this class creates an object which is capable of holding refrences of 2 objects
+class newobject:
+    def __init__(self,data):
+        self.pre = None
+        self.next = None
+        self.data = data
+
+# this class creates the doubaly linked list by holding refrence of predecessor and successor node
+class DoublyLinkedList:
+#creating instance of object 
+    def __init__(self):
+        self.start=None
+        self.end=None
+        self.size=0
+# this function returns the length of linked list
+    def length(self):
+        return self.size
+#this function adds the object to left side    
+    def add_front(self,data):
+        while self.start is None and self.end is None:
+            new=newobject(data)
+            self.start=new
+            self.end=new
+            self.size+=1
+            return
+        while self.start is not None:
+            new=newobject(data)
+            new.pre=self.end
+            self.end.next=new
+            self.end=new
+            self.size+=1
+            return
+#this function adds the object to right side 
+    def add_rear(self,data):
+        new=newobject(data)
+        new.next=self.start
+        self.start.pre=new
+        self.start=new
+        self.size += 1
+#this function inserts in position value
+    def insert(self,position,value):
+        firstpointer=self.start
+        assert position < self.size and position > 0
+        n=0
+        while n<position-1:
+            n=n + 1
+            firstpointer = firstpointer.next
+        new = newobject(value)
+        secondpointer = firstpointer.next
+        secondpointer.pre = new
+        new.next = secondpointer
+        firstpointer.next = new
+        new.pre = firstpointer
+        self.size += 1
+#this will remove the items from left size and will return the value
+    def remove_left(self):
+        if self.size==1:
+            temp = self.start
+            self.start = None
+            self.end = None
+            self.size -= 1
+            return temp.data
+           
+        curr=self.start
+        curr1=curr.next
+        curr1.pre=None
+        curr.next=None
+        self.start=curr1
+        self.size -= 1
+        return curr.data
+#this will remove the items from right size and will return the value
+    def remove_right(self):
+        if self.size==1:
+            temp = self.start
+            self.start = None
+            self.end = None
+            self.size -= 1
+            return temp.data
+        curr=self.end
+        curr1=curr.pre
+        curr1.next=None
+        curr.pre=None
+        self.end=curr1
+        self.size -= 1
+        return curr.data
+#this will delete the in position value and will return the value
+    def removeByPosition(self,position):
+        n = 0
+        assert position < self.size and position >0
+        curr= self.start
+        while n < position :
+            n += 1
+            curr=curr.next
+        before = curr.pre
+        after  = curr.next
+        before.next = after
+        after.pre   = before
+        curr.next = None 
+        curr.pre = None
+        self.size -= 1
+        return curr.data       
+#this will display all the values in the linked list        
+    def display(self):
+        curr=self.start
+        while curr is not None:
+            print(curr.data)
+            curr=curr.next
+    def search(self,data):
+        n=0
+        curr=self.start
+        while n < self.size:
+            n +=1
+            if curr.data == data:
+                return (data,n)
+            curr = curr.next
+        return 'not found'
+            
+            
+    
+    
+    
+
+'''this is class that creates stack datastructure by using doubaly linked list'''
+class Stack(DoublyLinkedList):
+    def add(self,data):
+        self.add_front(data)
+    def pop(self):
+        return self.remove_right()
+    def Print(self):
+        self.display()
+    
+        
+'''this is a class that creates que data structure by using doubaly linked list'''
+class Que(DoublyLinkedList):
+    def enque(self,data):
+        self.add_front(data)
+    def dequeue(self):
+        return self.remove_left()
+    def Print(self):
+        self.display()
+'''this is a class that creates deque data structure by using doubly linked list'''
+
+    
+    
+
+
+
 #que
 class Que:
     def __init__(self):
